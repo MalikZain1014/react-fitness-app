@@ -1,12 +1,11 @@
 # react-fitness-app
 A React fitness app 
 <figure>
-  <img src="https://github.com/masoumehmohebbi/react-fitness-app/blob/main/react-fitness-app.PNG"/>
+  <img src="https://github.com/MalikZain1014/react-fitness-app/blob/main/react-fitness-app.PNG"/>
 </figure>
 
 ## Description
-One of the reasons I chose this application is my passion for fitness and it made me even more excited to develop this application.
-And also this is my first project with Api in reactJs. Working with Raid-api, Routers, Axios was a challenge for me.
+I am drawn to this project due to my fervent passion for fitness, amplifying my eagerness to delve into its development. The utilization of the MERN stack, coupled with React-Router-DOM and Axios in my maiden API-centric venture, poses a stimulating challenge, fostering my growth in ReactJS.
 
 ## Technologies used in this App
 
@@ -29,7 +28,7 @@ And also this is my first project with Api in reactJs. Working with Raid-api, Ro
 ## Development setup
 
 #### First, clone the project:
-git clone https://github.com/masoumehmohebbi/react-fitness-app/
+git clone 
 
 #### Then, install necessary npm packages:
 npm i
@@ -38,4 +37,4 @@ npm i
 npm run dev
 
 ## Author
-<a href="https://www.linkedin.com/in/masoumemohebbi">Masoume mohebbi</a>
+<a ">Malik Zain</a>
