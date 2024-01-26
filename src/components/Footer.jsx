@@ -1,23 +1,114 @@
-import { AnimationOnScroll } from 'react-animation-on-scroll';
+import { Link } from "react-scroll";
+import Logo from "../assets/images/Logo.svg";
 
 const Footer = () => {
-    return (  
-        <footer id="contact-us" className='flex items-center p-5 justify-center gap-y-4 flex-col mt-20'>
-                <AnimationOnScroll initiallyVisible={true} animateIn="animate__wobble">
-                    <h1 className="capitalize mb-6 text-2xl sm:text-3xl font-black text-slate-800 dark:text-slate-300"><span className='text-secondary'>Join now</span> to get in shape</h1>
-                </AnimationOnScroll>
-                <p className='text-justify md:w-2/3 xl:w-1/2 text-slate-800 dark:text-slate-300'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro voluptas natus a corrupti asperiores doloremque quibusdam voluptates vero, dolorum est.</p>
-                <form action="#" className="flex flex-col gap-y-4 mt-3 w-11/12 md:w-4/5 xl:w-1/2">
-                    <input className="capitalize" type="text" placeholder="name"/>
-                    <input className="capitalize" type="email" name="" id="" placeholder="email"/>
-                    <textarea className="capitalize" placeholder="message" name="" id="" cols="30" rows="4"></textarea>
-                    <input type="button" value="submit"
-                      className="ring-offset-[#fdf4ff] dark:ring-offset-slate-800 duration-500 bg-primary cursor-pointer capitalize hover:ring hover:ring-offset-2 hover:ring-primary text-white top-12 py-2 px-5 rounded-md"
-                    />
-                </form>
-        </footer>
-    );
-}
+  return (
+    <>
+      <footer className="text-gray-600 body-font mt-16">
+        <div className="px-6 py-8 mx-auto flex items-center sm:flex-row flex-col">
+          <a to="/">
+            <span className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900 dark:text-white">
+              <img src={Logo} alt="Fitness Craze" className="w-6, h-6" />
+              <span className="ml-4 text-xl">Fitness Freak</span>
+            </span>
+          </a>
+          <p className="text-sm text-gray-800 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4 dark:text-white">
+            © 2022 Fitness Freak —
+            {/* <span className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4 dark:text-gray-100"> */}
+            <Link to="/r">
+              <button
+                type="button"
+                className="inline-block rounded-full border-2 border-neutral-50 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal  transition duration-150 ease-in-out bg-gray-200 dark:bg-transparent  hover:bg-red-900  hover:bg-opacity-10  focus:border-neutral-600  focus:outline-none focus:ring-0 active:border-neutral-800  dark:hover:bg-opacity-10"
+                data-te-ripple-init="dark"
+                data-te-ripple-color="light"
+              >
+                Sign up!
+              </button>
+            </Link>
+            {/* </span> */}
+          </p>
 
+          <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <a
+              className="text-gray-500 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400"
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg
+                fill="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-7 h-7"
+                viewBox="0 0 24 24"
+              >
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+            </a>
+            <a
+              className="ml-4 text-gray-500 dark:text-gray-300 hover:text-cyan-700 dark:hover:text-cyan-400"
+              href="https://twitter.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg
+                fill="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-7 h-7"
+                viewBox="0 0 24 24"
+              >
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+              </svg>
+            </a>
+            <a
+              className="ml-4 text-gray-500 dark:text-gray-300 hover:text-pink-700 dark:hover:text-pink-400"
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-7 h-7"
+                viewBox="0 0 24 24"
+              >
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+              </svg>
+            </a>
+            <a
+              className="ml-4 text-gray-500 dark:text-gray-300 hover:text-blue-900 dark:hover:text-blue-500"
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg
+                fill="currentColor"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="0"
+                className="w-7 h-7"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="none"
+                  d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+                ></path>
+                <circle cx="4" cy="4" r="2" stroke="none"></circle>
+              </svg>
+            </a>
+          </span>
+        </div>
+      </footer>
+    </>
+  );
+};
 
 export default Footer;

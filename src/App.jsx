@@ -6,6 +6,9 @@ import NotFound from "./pages/NotFound";
 import ExerciseLayout from "./Layout/ExerciseLayout";
 import { useLocation } from "react-router";
 import { useEffect } from "react";
+import ContectUs from "./pages/ContectUs";
+import SignIn from "./pages/SignIn";
+
 function App() {
   const location = useLocation();
   useEffect(() => {
@@ -20,6 +23,8 @@ function App() {
           <Route path="/exercise/:id" element={<ExerciseDetail />} />
           <Route path="/exercises" element={<ExerciseLayout />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/contectus" element={<ContectUs />} />
+          <Route path="/signin" element={<SignIn />} />
         </Routes>
       </Layout>
     </div>

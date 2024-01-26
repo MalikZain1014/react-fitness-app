@@ -16,6 +16,10 @@ const NavBar = ({ theme, setTheme }) => {
   });
 
   const [open, setOpen] = useState(false);
+  const handleLinkClick = () => {
+    // Close the sidebar when a link is clicked
+    setOpen(false);
+  };
   const themeOptions = [
     { icon: BiSun, title: "light" },
     { icon: BiMoon, title: "dark" },
@@ -94,6 +98,101 @@ const NavBar = ({ theme, setTheme }) => {
         className="
             fixed top-0 left-0 right-0 h-1 dark:bg-secondary bg-primary origin-left "
       ></motion.div>
+      <div
+        className={`lg:hidden fixed top-0 right-0 w-half h-full bg-white dark:bg-slate-800 z-50 transition-transform ease-in-out duration-300 transform ${
+          open ? "-translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Sidebar Content */}
+        <div className="flex ml-3 flex-col h-full justify-left items-left">
+          <Link
+            to="/"
+            className="text-slate-800 dark:text-slate-300 py-4"
+            onClick={handleLinkClick}
+          >
+            Home
+          </Link>
+          <Link
+            to="/exercises"
+            className="text-slate-800 dark:text-slate-300 py-4"
+            onClick={handleLinkClick}
+          >
+            Exercises
+          </Link>
+          <Scroll
+            to="classes"
+            spy={true}
+            smooth={true}
+            offset={-100}
+            duration={500}
+            className="text-slate-800 dark:text-slate-300 py-4"
+            onClick={handleLinkClick}
+          >
+            Classes
+          </Scroll>
+          {/* ... (other links with onClick handlers) */}
+          <Scroll
+            to="reasons"
+            spy={true}
+            smooth={true}
+            offset={-100}
+            duration={500}
+            className="text-slate-800 dark:text-slate-300 py-4"
+            onClick={handleLinkClick}
+          >
+            Reasons
+          </Scroll>
+          <Link
+            to="/contectus"
+            className="text-slate-800 dark:text-slate-300 py-4"
+            onClick={handleLinkClick}
+          >
+            Contacts
+          </Link>
+          <div className="flex">
+            <Link
+              to="/signin"
+              className="text-slate-800 dark:text-slate-300 py-4"
+              onClick={handleLinkClick}
+            >
+              Sign in
+            </Link>
+
+            <Link
+              to="/"
+              className="text-slate-800 dark:text-slate-300 py-4 px-2"
+              onClick={handleLinkClick}
+            >
+              Create account
+            </Link>
+          </div>
+          <div className="flex py-4 gap-x-4">
+            {themeOptions.map((opt) => (
+              // eslint-disable-next-line react/jsx-key
+              <motion.div
+                key={opt.title}
+                whileHover={{
+                  scale: 1.3,
+                  originX: 0,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: "300",
+                }}
+              >
+                <opt.icon
+                  key={opt.title}
+                  onClick={() => setTheme(opt.title)}
+                  className={`text-2xl cursor-pointer ${
+                    theme === opt.title ? "text-yellow-400" : "text-slate-600 "
+                  }`}
+                  title={opt.title}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       <div className="md:flex py-3 items-center justify-between bg-[#fdf4ff] dark:bg-slate-800">
         <div
@@ -124,9 +223,7 @@ const NavBar = ({ theme, setTheme }) => {
             className={`flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:items-center 
                     lg:pb-0 pb-12 absolute lg:static bg-[#fdf4ff]  lg:bg-transparent lg:z-auto z-[-1]
                     left-0 w-full lg:w-auto lg:pl-0 pl-9 transition-all duration-500 ease-in lg:gap-x-10
-                    text-xl md:text-[22px] ${
-                      open ? "pt-2 top-[70px] opacity-100" : "top-[-490px]"
-                    } lg:opacity-100 opacity-0`}
+                    text-xl md:text-[22px] lg:opacity-100 opacity-0`}
           >
             <motion.div
               whileHover={{
@@ -231,22 +328,67 @@ const NavBar = ({ theme, setTheme }) => {
                 stiffness: "300",
               }}
             >
-              <Scroll
-                onClick={() => setOpen(false)}
-                to="contact-us"
-                spy={true}
-                smooth={true}
-                offset={50}
-                duration={500}
+              <Link
+                to="/contectus"
                 className="text-slate-800 cursor-pointer lg:dark:text-slate-300"
               >
+                {/* <Scroll
+                  onClick={() => setOpen(false)}
+                  to="contact-us"
+                  spy={true}
+                  smooth={true}
+                  offset={50}
+                  duration={500}
+                > */}
                 Contacts
-              </Scroll>
+                {/* </Scroll> */}
+              </Link>
             </motion.div>
           </div>
         </div>
 
-        <div className="hidden lg:flex gap-x-4 bg-[#fae8ff] dark:bg-slate-400 rounded-md p-2 mr-5">
+        <div className="hidden lg:flex lg:flex-2 lg:items-left lg:justify-end lg:space-x-6">
+          <motion.div
+            whileHover={{
+              scale: 1.2,
+              originX: 0,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: "300",
+            }}
+          >
+            <Link
+              to="/signin"
+              className="text-slate-800 lg:dark:text-slate-300 cursor-pointer  border-primary"
+            >
+              Sign in
+            </Link>
+          </motion.div>
+          <span
+            className="h-6 w-px  lg:bg-slate-800 lg:dark:bg-slate-300"
+            aria-hidden="true"
+          />
+          <motion.div
+            whileHover={{
+              scale: 1.2,
+              originX: 0,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: "300",
+            }}
+          >
+            <Link
+              to="/"
+              className="text-slate-800 lg:dark:text-slate-300 cursor-pointer  border-primary"
+            >
+              Create account
+            </Link>
+          </motion.div>
+        </div>
+
+        <div className="hidden lg:flex gap-x-4 bg-[#fae8ff] dark:bg-gray-300 rounded-md p-2 mr-5">
           {themeOptions.map((opt) => (
             // eslint-disable-next-line react/jsx-key
             <motion.div
@@ -264,7 +406,7 @@ const NavBar = ({ theme, setTheme }) => {
                 key={opt.title}
                 onClick={() => setTheme(opt.title)}
                 className={`text-2xl cursor-pointer ${
-                  theme === opt.title ? "text-secondary" : "text-slate-800 "
+                  theme === opt.title ? "text-yellow-400" : "text-slate-600 "
                 }`}
                 title={opt.title}
               />

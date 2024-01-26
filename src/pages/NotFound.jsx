@@ -13,7 +13,7 @@ const NotFound = () => {
         you can either return to the previous page, visit the homepage.
       </p>
 
-      <Link to={"/home"}>
+      <Link to={"/"}>
         <button className=" text-sm sm:text-base duration-500 ring-offset-[#fdf4ff] dark:ring-offset-slate-800 bg-primary ml-3 hover:ring hover:ring-offset-2 hover:ring-primary text-white top-12 py-3 sm:py-2 px-3 sm:px-5 rounded-md">
           visit homepage
         </button>
