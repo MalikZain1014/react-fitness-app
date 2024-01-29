@@ -37,4 +37,4 @@ npm i
 npm run dev
 
 ## Author
-<a ">Malik Zain</a>
+<a "https://www.linkedin.com/in/zain-ul-abideen-33bb132b0">Malik Zain</a>
