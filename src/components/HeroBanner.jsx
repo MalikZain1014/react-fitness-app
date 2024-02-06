@@ -14,7 +14,7 @@ const HeroBanner = () => {
       >
         <div className="flex items-center justify-center flex-col gap-y-7">
           <h1 className="font-black text-2xl sm:text-3xl text-primary">
-            Talha
+            FitTreck Club
           </h1>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-800 dark:text-slate-300">
             Sweat, Smile <br /> And Repeat
