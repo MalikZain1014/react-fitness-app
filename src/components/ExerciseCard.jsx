@@ -45,9 +45,9 @@ const ExerciseCard = ({ exercise }) => {
             <button className="text-white text-sm md:text-base rounded-lg bg-primary p-2">
               Target:{exercise.target}
             </button>
-            <button className="rounded-lg border-2 border-primary p-2 bg-indigo-100">
+            {/* <button className="rounded-lg border-2 border-primary p-2 bg-indigo-100">
               Equipment:{exercise.equipment}
-            </button>
+            </button> */}
           </div>
           <p className="mt-3 font-medium text-slate-800">{exercise.name}</p>
         </motion.div>

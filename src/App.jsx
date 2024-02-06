@@ -8,6 +8,8 @@ import { useLocation } from "react-router";
 import { useEffect } from "react";
 import ContectUs from "./pages/ContectUs";
 import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import TrainerSignUp from "./components/TrainerSignUp";
 
 function App() {
   const location = useLocation();
@@ -25,6 +27,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/contectus" element={<ContectUs />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/trainersignup" element={<TrainerSignUp />} />
         </Routes>
       </Layout>
     </div>

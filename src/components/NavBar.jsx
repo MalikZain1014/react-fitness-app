@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Link as Scroll } from "react-scroll";
-import logo from "../assets/images/Logo.png";
-import darkLogo from "../assets/images/dark-logo.png";
+import logo from "../assets/images/Logo.svg";
+import darkLogo from "../assets/images/logo.svg";
 import { BiSun, BiMoon, BiLaptop } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
@@ -159,7 +159,7 @@ const NavBar = ({ theme, setTheme }) => {
             </Link>
 
             <Link
-              to="/"
+              to="/signup"
               className="text-slate-800 dark:text-slate-300 py-4 px-2"
               onClick={handleLinkClick}
             >
@@ -380,7 +380,7 @@ const NavBar = ({ theme, setTheme }) => {
             }}
           >
             <Link
-              to="/"
+              to="/signup"
               className="text-slate-800 lg:dark:text-slate-300 cursor-pointer  border-primary"
             >
               Create account
