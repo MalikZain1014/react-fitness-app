@@ -35,7 +35,7 @@ const Exercises = ({ exercise, setExercise, bodyPart }) => {
         Showing Results
       </h1>
       <section
-        className="mt-9 flex flex-wrap w-full justify-evenly gap-5"
+        className="mt-9 flex flex-wrap w-full justify-evenly gap-5 overflow-y-hidden"
         id="exercises"
       >
         {exercise.map((exc, index) => (

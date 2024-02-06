@@ -52,12 +52,12 @@ export default function SignUp() {
           className="flex flex-col gap-y-4 mt-3 w-10/12 md:w-3/5 xl:w-2/5"
         >
           <div>
-            {/* <label
+            <label
               htmlFor="name"
               className="block text-sm font-medium text-slate-800 dark:text-slate-300"
             >
-              Name
-            </label> */}
+              First Name
+            </label>
             <div className="mt-2">
               <input
                 name="firstName"
@@ -71,15 +71,23 @@ export default function SignUp() {
               />
             </div>
             <div className="mt-2">
-              <input
-                type="text"
-                placeholder="Last Name"
-                name="lastName"
-                onChange={handleChange}
-                value={data.lastName}
-                required
-                className="pl-2 w-full dark:bg-transparent rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-slate-800 dark:text-slate-300"
+              >
+                Last Name
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  name="lastName"
+                  onChange={handleChange}
+                  value={data.lastName}
+                  required
+                  className="pl-2 w-full dark:bg-transparent rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
             </div>
           </div>
           {/* <div>

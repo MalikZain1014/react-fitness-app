@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Link as Scroll } from "react-scroll";
-import logo from "../assets/images/Logo.svg";
-import darkLogo from "../assets/images/logo.svg";
+import logo from "../assets/images/Logo.png";
+import darkLogo from "../assets/images/logo.png";
 import { BiSun, BiMoon, BiLaptop } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
@@ -99,7 +99,7 @@ const NavBar = ({ theme, setTheme }) => {
             fixed top-0 left-0 right-0 h-1 dark:bg-secondary bg-primary origin-left "
       ></motion.div>
       <div
-        className={`lg:hidden fixed top-0 right-0 w-half h-full bg-white dark:bg-slate-800 z-50 transition-transform ease-in-out duration-300 transform ${
+        className={`lg:hidden fixed top-0 right-0 w-half h-full bg-white dark:bg-gradient-to-r from-neutral-800 via-slate-800 to-neutral-800 z-50 transition-transform ease-in-out duration-300 transform ${
           open ? "-translate-x-0" : "translate-x-full"
         }`}
       >
@@ -194,7 +194,7 @@ const NavBar = ({ theme, setTheme }) => {
         </div>
       </div>
 
-      <div className="md:flex py-3 items-center justify-between bg-[#fdf4ff] dark:bg-slate-800">
+      <div className="md:flex py-3 items-center justify-between bg-violet-100 dark:bg-gradient-to-r from-neutral-800 via-slate-800 to-neutral-800">
         <div
           onClick={() => setOpen(!open)}
           className="text-slate-800 dark:text-slate-300 text-4xl absolute right-5 cursor-pointer z-50 lg:hidden"
@@ -212,7 +212,7 @@ const NavBar = ({ theme, setTheme }) => {
               type: "spring",
               stiffness: "300",
             }}
-            className="w-12 h-12 mx-5"
+            className="w-16 h-16 mx-5"
           >
             <Link to="/">
               <img className="object-cover" src={armLogo} alt="" />
@@ -221,11 +221,11 @@ const NavBar = ({ theme, setTheme }) => {
 
           <div
             className={`flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:items-center 
-                    lg:pb-0 pb-12 absolute lg:static bg-[#fdf4ff]  lg:bg-transparent lg:z-auto z-[-1]
+                    lg:pb-0 pb-12 absolute lg:static bg-violet-100  lg:bg-transparent lg:z-auto z-[-1]
                     left-0 w-full lg:w-auto lg:pl-0 pl-9 transition-all duration-500 ease-in lg:gap-x-10
                     text-xl md:text-[22px] lg:opacity-100 opacity-0`}
           >
-            <motion.div
+            {/* <motion.div
               whileHover={{
                 scale: 1.2,
                 originX: 0,
@@ -242,7 +242,7 @@ const NavBar = ({ theme, setTheme }) => {
               >
                 Home
               </Link>
-            </motion.div>
+            </motion.div> */}
 
             <motion.div
               whileHover={{
@@ -366,7 +366,7 @@ const NavBar = ({ theme, setTheme }) => {
             </Link>
           </motion.div>
           <span
-            className="h-6 w-px  lg:bg-slate-800 lg:dark:bg-slate-300"
+            className="h-6 w-px  lg:bg-gradient-to-r from-neutral-800 via-slate-800 to-neutral-800 lg:dark:bg-slate-300"
             aria-hidden="true"
           />
           <motion.div
@@ -406,7 +406,7 @@ const NavBar = ({ theme, setTheme }) => {
                 key={opt.title}
                 onClick={() => setTheme(opt.title)}
                 className={`text-2xl cursor-pointer ${
-                  theme === opt.title ? "text-yellow-400" : "text-slate-600 "
+                  theme === opt.title ? "text-primary" : "text-slate-600 "
                 }`}
                 title={opt.title}
               />

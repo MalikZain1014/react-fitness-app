@@ -6,8 +6,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#06b6d4",
-        secondary: "#c026d3",
+        primary: "#2525ff",
+        secondary: "#00a700",
       },
       screens: {
         "-sm": "450px",
