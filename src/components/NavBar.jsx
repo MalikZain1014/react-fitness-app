@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { Link as Scroll } from "react-scroll";
 import logo from "../assets/images/Logo.png";
@@ -6,7 +7,6 @@ import { BiSun, BiMoon, BiLaptop } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 
-// eslint-disable-next-line react/prop-types
 const NavBar = ({ theme, setTheme }) => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -119,17 +119,12 @@ const NavBar = ({ theme, setTheme }) => {
           >
             Exercises
           </Link>
-          <Scroll
-            to="classes"
-            spy={true}
-            smooth={true}
-            offset={-100}
-            duration={500}
-            className="text-slate-800 dark:text-slate-300 py-4"
-            onClick={handleLinkClick}
+          <Link
+            to="/exercise"
+            className="text-slate-800 cursor-pointer lg:dark:text-slate-300"
           >
-            Classes
-          </Scroll>
+            Demo
+          </Link>
           {/* ... (other links with onClick handlers) */}
           <Scroll
             to="reasons"
@@ -151,19 +146,19 @@ const NavBar = ({ theme, setTheme }) => {
           </Link>
           <div className="flex">
             <Link
-              to="/signin"
+              to="/login"
               className="text-slate-800 dark:text-slate-300 py-4"
               onClick={handleLinkClick}
             >
-              Sign in
+              Login
             </Link>
 
             <Link
-              to="/signup"
+              to="/registernow"
               className="text-slate-800 dark:text-slate-300 py-4 px-2"
               onClick={handleLinkClick}
             >
-              Create account
+              Register Now
             </Link>
           </div>
           <div className="flex py-4 gap-x-4">
@@ -197,7 +192,7 @@ const NavBar = ({ theme, setTheme }) => {
       <div className="md:flex py-3 items-center justify-between bg-violet-100 dark:bg-gradient-to-r from-neutral-800 via-slate-800 to-neutral-800">
         <div
           onClick={() => setOpen(!open)}
-          className="text-slate-800 dark:text-slate-300 text-4xl absolute right-5 cursor-pointer z-50 lg:hidden"
+          className="text-slate-800 dark:text-slate-300 text-4xl absolute top-5 right-5 cursor-pointer z-50 lg:hidden"
         >
           <ion-icon name={open ? "close" : "menu"}></ion-icon>
         </div>
@@ -212,20 +207,25 @@ const NavBar = ({ theme, setTheme }) => {
               type: "spring",
               stiffness: "300",
             }}
-            className="w-16 h-16 mx-5"
+            className="w-12 h-12 mx-5 mb-2"
           >
             <Link to="/">
               <img className="object-cover" src={armLogo} alt="" />
             </Link>
           </motion.div>
-
+          {/* <div
+              className={`flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:items-center 
+                      lg:pb-0 pb-12 absolute lg:static bg-violet-100  lg:bg-transparent lg:z-auto z-[-1]
+                      left-0 w-full lg:w-auto lg:pl-0 pl-9 transition-all duration-500 ease-in lg:gap-x-10
+                      text-xl md:text-[22px] lg:opacity-100 opacity-0`}
+            > */}
+          {/* Conditional rendering based on screen size */}
           <div
-            className={`flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:items-center 
-                    lg:pb-0 pb-12 absolute lg:static bg-violet-100  lg:bg-transparent lg:z-auto z-[-1]
-                    left-0 w-full lg:w-auto lg:pl-0 pl-9 transition-all duration-500 ease-in lg:gap-x-10
-                    text-xl md:text-[22px] lg:opacity-100 opacity-0`}
+            className="hidden  lg:flex lg:flex-row gap-y-6 lg:gap-y-0 lg:flex-row lg:items-center
+           lg:pb-0 pb-12 lg:bg-violet-100 lg:dark:bg-transparent lg:w-auto lg:pl-0 pl-9 lg:gap-x-10
+            text-xl md:text-[22px] lg:opacity-100 opacity-0"
           >
-            {/* <motion.div
+            <motion.div
               whileHover={{
                 scale: 1.2,
                 originX: 0,
@@ -242,7 +242,7 @@ const NavBar = ({ theme, setTheme }) => {
               >
                 Home
               </Link>
-            </motion.div> */}
+            </motion.div>
 
             <motion.div
               whileHover={{
@@ -258,17 +258,7 @@ const NavBar = ({ theme, setTheme }) => {
                 to="/exercises"
                 className="text-slate-800 cursor-pointer lg:dark:text-slate-300"
               >
-                {/* <Scroll
-                  onClick={() => setOpen(false)}
-                  to="exercises"
-                  spy={true}
-                  smooth={true}
-                  offset={-150}
-                  duration={500}
-                  className="text-slate-800 cursor-pointer lg:dark:text-slate-300"
-                > */}
                 Exercises
-                {/* </Scroll> */}
               </Link>
             </motion.div>
 
@@ -282,17 +272,12 @@ const NavBar = ({ theme, setTheme }) => {
                 stiffness: "300",
               }}
             >
-              <Scroll
-                onClick={() => setOpen(false)}
-                to="classes"
-                spy={true}
-                smooth={true}
-                offset={-100}
-                duration={500}
+              <Link
+                to="/exercise"
                 className="text-slate-800 cursor-pointer lg:dark:text-slate-300"
               >
-                Classes
-              </Scroll>
+                Demo
+              </Link>
             </motion.div>
 
             <motion.div
@@ -332,16 +317,7 @@ const NavBar = ({ theme, setTheme }) => {
                 to="/contectus"
                 className="text-slate-800 cursor-pointer lg:dark:text-slate-300"
               >
-                {/* <Scroll
-                  onClick={() => setOpen(false)}
-                  to="contact-us"
-                  spy={true}
-                  smooth={true}
-                  offset={50}
-                  duration={500}
-                > */}
                 Contacts
-                {/* </Scroll> */}
               </Link>
             </motion.div>
           </div>
@@ -359,14 +335,14 @@ const NavBar = ({ theme, setTheme }) => {
             }}
           >
             <Link
-              to="/signin"
+              to="/login"
               className="text-slate-800 lg:dark:text-slate-300 cursor-pointer  border-primary"
             >
-              Sign in
+              Login
             </Link>
           </motion.div>
           <span
-            className="h-6 w-px  lg:bg-gradient-to-r from-neutral-800 via-slate-800 to-neutral-800 lg:dark:bg-slate-300"
+            className="h-6 w-px  lg:bg-slate-800 lg:dark:bg-slate-300"
             aria-hidden="true"
           />
           <motion.div
@@ -380,10 +356,10 @@ const NavBar = ({ theme, setTheme }) => {
             }}
           >
             <Link
-              to="/signup"
+              to="/registernow"
               className="text-slate-800 lg:dark:text-slate-300 cursor-pointer  border-primary"
             >
-              Create account
+              Register Now
             </Link>
           </motion.div>
         </div>

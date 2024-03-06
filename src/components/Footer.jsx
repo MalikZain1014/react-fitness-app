@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "../assets/images/Logo.svg";
+import Logo from "../assets/images/Logo.png";
 
 const Footer = () => {
   return (
@@ -8,20 +8,20 @@ const Footer = () => {
         <div className="px-6 py-8 mx-auto flex items-center sm:flex-row flex-col">
           <Link to="/">
             <span className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900 dark:text-white">
-              <img src={Logo} alt="Fitness Craze" className="w-6, h-6" />
+              <img src={Logo} alt="Fitness Craze" className="w-16, h-16" />
               <span className="ml-4 text-xl">FitTreck</span>
             </span>
           </Link>
           <p className="text-sm text-gray-800 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4 dark:text-white">
             © 2022 FitTreck —
             {/* <span className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4 dark:text-gray-100"> */}
-            <Link to="/signup">
+            <Link to="/registernow">
               <button
                 className="inline-block rounded-full border-2 border-neutral-50 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal  transition  ease-in-out bg-gray-200 dark:bg-transparent  hover:bg-red-900  hover:bg-opacity-10  focus:border-neutral-600  focus:outline-none focus:ring-0 active:border-neutral-800  dark:hover:bg-opacity-10"
                 data-te-ripple-init="dark"
                 data-te-ripple-color="light"
               >
-                Sign up!
+                Register Now!
               </button>
             </Link>
             {/* </span> */}

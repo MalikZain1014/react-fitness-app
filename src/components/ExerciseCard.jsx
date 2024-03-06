@@ -11,6 +11,7 @@ const ExerciseCard = ({ exercise }) => {
   const mainControls = useAnimation();
 
   useEffect(() => {
+    // console.log("In EX CARD: ", exercise);
     if (isInView) {
       mainControls.start("visible");
     }
@@ -20,9 +21,9 @@ const ExerciseCard = ({ exercise }) => {
   return (
     <section
       ref={ref}
-      className="bg-white shadow-md shadow-[#f5d0fe] p-5 rounded-md my-3"
+      className="bg-transparent shadow-md shadow-[#f5d0fe] p-5 rounded-md my-3"
     >
-      <Link to={`/exercise/${exercise.id}`}>
+      <Link to={`/exercise/${exercise._id}`}>
         <motion.div
           variants={{
             hidden: { opacity: 0, y: 75 },
@@ -49,7 +50,9 @@ const ExerciseCard = ({ exercise }) => {
               Equipment:{exercise.equipment}
             </button> */}
           </div>
-          <p className="mt-3 font-medium text-slate-800">{exercise.name}</p>
+          <p className="mt-3 font-medium text-slate-800 dark:text-slate-100">
+            {exercise.name}
+          </p>
         </motion.div>
       </Link>
     </section>

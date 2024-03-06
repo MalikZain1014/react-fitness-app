@@ -7,15 +7,18 @@ import ExerciseLayout from "./Layout/ExerciseLayout";
 import { useLocation } from "react-router";
 import React, { useEffect, useState } from "react";
 import ContectUs from "./pages/ContectUs";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+
 import TrainerSignUp from "./components/TrainerSignUp";
+import RegisterNow from "./pages/RegisterNow";
+import Login from "./pages/Login";
+import Exercise from "./pages/Exercise";
 
 // Step 1: Create Context for Theme
 const ThemeContext = React.createContext();
 
 function App() {
   const location = useLocation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
@@ -27,6 +30,8 @@ function App() {
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
+
+  // Render loading indicator if loading is true
 
   return (
     // Step 3: Provide Theme State to Entire App
@@ -43,10 +48,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/exercise/:id" element={<ExerciseDetail />} />
             <Route path="/exercises" element={<ExerciseLayout />} />
+            <Route path="/exercise" element={<Exercise />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/contectus" element={<ContectUs />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registernow" element={<RegisterNow />} />
             <Route path="/trainersignup" element={<TrainerSignUp />} />
           </Routes>
         </Layout>

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types"; // Import PropTypes for prop type validation
 import TargetIcon from "../assets/icons/target.png";
 import EquipmentIcon from "../assets/icons/equipment.png";
 import BodyPartIcon from "../assets/icons/body-part.png";
@@ -11,9 +11,10 @@ const Detail = ({ exerciseDetail }) => {
     { name: equipment, icon: EquipmentIcon },
     { name: bodyPart, icon: BodyPartIcon },
   ];
+
   return (
     <section className="flex flex-col p-5 lg:flex-row">
-      <div className="flex-1 flex items-center justify-center ">
+      <div className="flex-1 flex items-center justify-center">
         <img src={gifUrl} loading="lazy" alt={name} />
       </div>
 
@@ -26,7 +27,7 @@ const Detail = ({ exerciseDetail }) => {
           <span className="text-primary">{name}</span> is one of the best
           exercises to target your{" "}
           <span className="text-primary">{target}</span>.<br />
-          it will help you improve your mood and gain energy.
+          It will help you improve your mood and gain energy.
         </p>
         {extraDetail.map((item) => (
           <span
@@ -50,6 +51,17 @@ const Detail = ({ exerciseDetail }) => {
       </div>
     </section>
   );
+};
+
+// Add prop type validation
+Detail.propTypes = {
+  exerciseDetail: PropTypes.shape({
+    bodyPart: PropTypes.string.isRequired,
+    gifUrl: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    target: PropTypes.string.isRequired,
+    equipment: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Detail;

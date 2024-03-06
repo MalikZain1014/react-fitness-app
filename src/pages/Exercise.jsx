@@ -4,21 +4,16 @@ import axios from "axios"; // Import axios
 import HorizontalScrollBar from "../components/HorizontalScrollBar";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 
+// eslint-disable-next-line react/prop-types
 const SearchExercises = () => {
   const [search, setSearch] = useState("");
-  const [bodyParts, setBodyParts] = useState([]);
-  const [filteredExercises, setFilteredExercises] = useState([]);
+  const [bodyParts, setBodyParts] = useState([]); // Corrected variable name
 
   useEffect(() => {
     const fetchExercisesData = async () => {
       try {
         const response = await axios.get("http://localhost:5500/exercises");
-        setBodyParts(
-          Array.from(
-            new Set(response.data.data.map((exercise) => exercise.bodyPart))
-          )
-        );
-        setFilteredExercises(response.data.data);
+        setBodyParts(response.data.data.map((exercise) => exercise.bodyPart)); // Update bodyParts state with bodyPart data
       } catch (error) {
         console.error("Error fetching exercises:", error);
       }
@@ -34,24 +29,17 @@ const SearchExercises = () => {
 
         const searchExercises = exerciseData.data.filter(
           (exercise) =>
-            exercise.name.toLowerCase().includes(search) ||
-            exercise.target.toLowerCase().includes(search) ||
-            exercise.bodyPart.toLowerCase().includes(search) ||
-            exercise.equipment.toLowerCase().includes(search)
+            exercise.name.toLocaleLowerCase().includes(search) ||
+            exercise.target.toLocaleLowerCase().includes(search) ||
+            exercise.bodyPart.toLocaleLowerCase().includes(search) ||
+            exercise.equipment.toLocaleLowerCase().includes(search)
         );
         setSearch("");
-        setFilteredExercises(searchExercises);
+        setBodyParts(searchExercises.map((exercise) => exercise.bodyPart)); // Update bodyParts state with filtered bodyPart data
       } catch (error) {
         console.log(error);
       }
     }
-  };
-
-  const handleBodyPartClick = (selectedBodyPart) => {
-    const exercisesByBodyPart = filteredExercises.filter(
-      (exercise) => exercise.bodyPart === selectedBodyPart
-    );
-    setFilteredExercises(exercisesByBodyPart);
   };
 
   return (
@@ -63,10 +51,10 @@ const SearchExercises = () => {
             <br /> Should Know
           </h1>
         </AnimationOnScroll>
-        <div className="flex items-center sm:items-start w-full sm:w-[80%] sm:flex-row gap-y-2 sm:gap-y-0">
+        <div className="flex items-center sm:items-start w-full sm:w-[80%]  sm:flex-row gap-y-2 sm:gap-y-0">
           <input
             value={search}
-            onChange={(e) => setSearch(e.target.value.toLowerCase())}
+            onChange={(e) => setSearch(e.target.value.toLocaleLowerCase())}
             type="text"
             placeholder="Search Exercises"
           />
@@ -78,21 +66,11 @@ const SearchExercises = () => {
           </button>
         </div>
       </section>
-      <div className="flex justify-center gap-4">
-        {bodyParts.map((part, index) => (
-          <button
-            key={index}
-            onClick={() => handleBodyPartClick(part)}
-            className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-300"
-          >
-            {part}
-          </button>
-        ))}
-      </div>
       <HorizontalScrollBar
-        data={filteredExercises.map((exercise) => exercise.bodyPart)}
+        data={bodyParts}
+        setBodypart={setBodyParts} // Corrected variable name
         isBodyParts
-        bodyPart={filteredExercises.map((exercise) => exercise.bodyPart)}
+        bodyPart={bodyParts} // Corrected variable name
       />
     </>
   );

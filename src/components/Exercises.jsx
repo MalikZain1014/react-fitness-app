@@ -1,30 +1,35 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react";
-import ExerciseCard from "./ExerciseCard";
-import { FetchData, exerciseOptions } from "../../utils/fetchData";
-// import { Link } from "react-router-dom";
 
-const Exercises = ({ exercise, setExercise, bodyPart }) => {
+import ExerciseCard from "./ExerciseCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+const Exercise = () => {
+  const [exercises, setExercises] = useState([]);
+  const [startIndex, setStartIndex] = useState(0);
+
   useEffect(() => {
     const fetchExercisesData = async () => {
-      let exercisesData = [];
-      if (bodyPart === "all") {
-        exercisesData = await FetchData(
-          "https://exercisedb.p.rapidapi.com/exercises",
-          exerciseOptions
-        );
-      } else {
-        exercisesData = await FetchData(
-          `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
-          exerciseOptions
-        );
+      try {
+        const response = await axios.get("http://localhost:5500/exercises");
+        setExercises(response.data.data); // Set exercises state with the data array
+      } catch (error) {
+        console.error("Error fetching exercises:", error);
       }
-      setExercise(exercisesData.data.slice(0, 9));
     };
+
     fetchExercisesData();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bodyPart]);
+  }, []);
+
+  const handleClickNext = () => {
+    setStartIndex((prevIndex) => prevIndex + 9);
+  };
+
+  const handleClickPrev = () => {
+    setStartIndex((prevIndex) => Math.max(prevIndex - 9, 0));
+  };
 
   return (
     <div className="overflow-x-hidden">
@@ -38,12 +43,28 @@ const Exercises = ({ exercise, setExercise, bodyPart }) => {
         className="mt-9 flex flex-wrap w-full justify-evenly gap-5 overflow-y-hidden"
         id="exercises"
       >
-        {exercise.map((exc, index) => (
+        {exercises.slice(startIndex, startIndex + 9).map((exc, index) => (
           <ExerciseCard key={index} exercise={exc} />
         ))}
       </section>
+      {exercises.length > startIndex + 9 && (
+        <button
+          onClick={handleClickNext}
+          className="text-sm mt-4 text-blue-500 hover:underline"
+        >
+          Show Next Exercises
+        </button>
+      )}
+      {startIndex > 0 && (
+        <button
+          onClick={handleClickPrev}
+          className="text-sm mt-4 text-blue-500 hover:underline"
+        >
+          Show Previous Exercises
+        </button>
+      )}
     </div>
   );
 };
 
-export default Exercises;
+export default Exercise;

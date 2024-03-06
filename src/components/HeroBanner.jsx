@@ -1,9 +1,12 @@
+/* eslint-disable react-refresh/only-export-components */
+import React from "react";
 import { Link } from "react-router-dom";
 import HeroBannerImg from "../assets/images/banner.png";
 import { motion } from "framer-motion";
 import Register from "../assets/images/Register.png";
 
-const HeroBanner = () => {
+// Define HeroBanner component
+function HeroBanner() {
   return (
     <section className="grid grid-cols-4 w-full justify-between lg:pb-5 pt-5 lg:pt-0 pb-14">
       <motion.div
@@ -77,6 +80,6 @@ const HeroBanner = () => {
       </motion.div>
     </section>
   );
-};
+}
 
-export default HeroBanner;
+export default React.memo(HeroBanner);

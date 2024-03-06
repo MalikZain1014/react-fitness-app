@@ -1,5 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-import BodyPart from "./bodyPart";
+import React from "react"; // Import React
+import BodyPart from "./BodyPart"; // Import BodyPart with correct casing
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import { useContext } from "react";
 import "react-horizontal-scrolling-menu/dist/styles.css";
@@ -28,7 +30,7 @@ function RightArrow() {
   );
 }
 
-// eslint-disable-next-line react/prop-types
+// Define HorizontalScrollBar component
 const HorizontalScrollBar = ({ data, setBodypart, bodyPart, isBodyParts }) => {
   return (
     <ScrollMenu
@@ -56,4 +58,4 @@ const HorizontalScrollBar = ({ data, setBodypart, bodyPart, isBodyParts }) => {
   );
 };
 
-export default HorizontalScrollBar;
+export default React.memo(HorizontalScrollBar); // Export HorizontalScrollBar component with React.memo()
