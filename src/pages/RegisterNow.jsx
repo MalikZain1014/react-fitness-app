@@ -27,7 +27,7 @@ export default function RegisterNow() {
     try {
       const url = "http://localhost:5500/register";
       const { data: res } = await axios.post(url, data);
-      navigate("/signin");
+      navigate("/login");
       console.log(res.message);
     } catch (error) {
       if (

@@ -6,8 +6,32 @@ import darkLogo from "../assets/images/logo.png";
 import { BiSun, BiMoon, BiLaptop } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const NavBar = ({ theme, setTheme }) => {
+const NavBar = ({ theme, setTheme, loggedIn }) => {
+  const isLoggedIn = loggedIn;
+  const navigate = useNavigate();
+
+  const handleLinkClick = () => {
+    setOpen(false);
+  };
+  const handleLogout = async () => {
+    try {
+      // Make a request to logout endpoint
+      await axios.post("http://localhost:5500/logout");
+
+      // Clear any local storage or session data if needed
+      localStorage.removeItem("token");
+
+      // Redirect to login page or any other desired page
+      navigate("/login");
+    } catch (error) {
+      console.error("Failed to logout", error);
+      // Handle error if needed
+    }
+  };
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -16,10 +40,7 @@ const NavBar = ({ theme, setTheme }) => {
   });
 
   const [open, setOpen] = useState(false);
-  const handleLinkClick = () => {
-    // Close the sidebar when a link is clicked
-    setOpen(false);
-  };
+
   const themeOptions = [
     { icon: BiSun, title: "light" },
     { icon: BiMoon, title: "dark" },
@@ -121,7 +142,7 @@ const NavBar = ({ theme, setTheme }) => {
           </Link>
           <Link
             to="/exercise"
-            className="text-slate-800 cursor-pointer lg:dark:text-slate-300"
+            className="text-slate-800 dark:text-slate-300 py-4"
           >
             Demo
           </Link>
@@ -144,6 +165,7 @@ const NavBar = ({ theme, setTheme }) => {
           >
             Contacts
           </Link>
+
           <div className="flex">
             <Link
               to="/login"
@@ -152,7 +174,6 @@ const NavBar = ({ theme, setTheme }) => {
             >
               Login
             </Link>
-
             <Link
               to="/registernow"
               className="text-slate-800 dark:text-slate-300 py-4 px-2"
@@ -160,6 +181,15 @@ const NavBar = ({ theme, setTheme }) => {
             >
               Register Now
             </Link>
+          </div>
+          <div>
+            {" "}
+            <button
+              className="text-slate-800 dark:text-slate-300 py-4 px-2"
+              // onClick={handleLogout}
+            >
+              Logout
+            </button>
           </div>
           <div className="flex py-4 gap-x-4">
             {themeOptions.map((opt) => (
@@ -213,13 +243,7 @@ const NavBar = ({ theme, setTheme }) => {
               <img className="object-cover" src={armLogo} alt="" />
             </Link>
           </motion.div>
-          {/* <div
-              className={`flex flex-col gap-y-6 lg:gap-y-0 lg:flex-row lg:items-center 
-                      lg:pb-0 pb-12 absolute lg:static bg-violet-100  lg:bg-transparent lg:z-auto z-[-1]
-                      left-0 w-full lg:w-auto lg:pl-0 pl-9 transition-all duration-500 ease-in lg:gap-x-10
-                      text-xl md:text-[22px] lg:opacity-100 opacity-0`}
-            > */}
-          {/* Conditional rendering based on screen size */}
+
           <div
             className="hidden  lg:flex lg:flex-row gap-y-6 lg:gap-y-0 lg:flex-row lg:items-center
            lg:pb-0 pb-12 lg:bg-violet-100 lg:dark:bg-transparent lg:w-auto lg:pl-0 pl-9 lg:gap-x-10
@@ -324,44 +348,69 @@ const NavBar = ({ theme, setTheme }) => {
         </div>
 
         <div className="hidden lg:flex lg:flex-2 lg:items-left lg:justify-end lg:space-x-6">
-          <motion.div
-            whileHover={{
-              scale: 1.2,
-              originX: 0,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: "300",
-            }}
-          >
-            <Link
-              to="/login"
-              className="text-slate-800 lg:dark:text-slate-300 cursor-pointer  border-primary"
-            >
-              Login
-            </Link>
-          </motion.div>
-          <span
-            className="h-6 w-px  lg:bg-slate-800 lg:dark:bg-slate-300"
-            aria-hidden="true"
-          />
-          <motion.div
-            whileHover={{
-              scale: 1.2,
-              originX: 0,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: "300",
-            }}
-          >
-            <Link
-              to="/registernow"
-              className="text-slate-800 lg:dark:text-slate-300 cursor-pointer  border-primary"
-            >
-              Register Now
-            </Link>
-          </motion.div>
+          {isLoggedIn ? (
+            <>
+              <motion.div
+                whileHover={{
+                  scale: 1.2,
+                  originX: 0,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: "300",
+                }}
+              >
+                <button
+                  className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </motion.div>
+            </>
+          ) : (
+            <>
+              <motion.div
+                whileHover={{
+                  scale: 1.2,
+                  originX: 0,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: "300",
+                }}
+              >
+                <Link
+                  to="/login"
+                  className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
+                  onClick={handleLinkClick}
+                >
+                  Login
+                </Link>
+              </motion.div>
+              <span
+                className="h-6 w-px lg:bg-slate-800 lg:dark:bg-slate-300"
+                aria-hidden="true"
+              />
+              <motion.div
+                whileHover={{
+                  scale: 1.2,
+                  originX: 0,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: "300",
+                }}
+              >
+                <Link
+                  to="/registernow"
+                  className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
+                >
+                  Register Now
+                </Link>
+              </motion.div>
+            </>
+          )}
         </div>
 
         <div className="hidden lg:flex gap-x-4 bg-[#fae8ff] dark:bg-gray-300 rounded-md p-2 mr-5">

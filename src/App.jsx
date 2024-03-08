@@ -1,49 +1,53 @@
-import { Route, Routes } from "react-router-dom";
-import Layout from "./Layout/Layout";
+import { Route, Routes, useLocation } from "react-router-dom";
+
 import Home from "./pages/Home";
 import ExerciseDetail from "./pages/ExerciseDetail";
 import NotFound from "./pages/NotFound";
 import ExerciseLayout from "./Layout/ExerciseLayout";
-import { useLocation } from "react-router";
-import React, { useEffect, useState } from "react";
+
+import React, { useState } from "react";
 import ContectUs from "./pages/ContectUs";
 
 import TrainerSignUp from "./components/TrainerSignUp";
 import RegisterNow from "./pages/RegisterNow";
 import Login from "./pages/Login";
 import Exercise from "./pages/Exercise";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 // Step 1: Create Context for Theme
 const ThemeContext = React.createContext();
 
 function App() {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location]);
+  }, [pathname]);
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  // Step 2: Use State Hook for Theme
-  const [theme, setTheme] = useState("light");
+  // Function to set logged in state
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
 
-  // Step 4: Toggle Theme Functionality
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
-
-  // Render loading indicator if loading is true
-
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "system"
+  );
   return (
-    // Step 3: Provide Theme State to Entire App
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div
-        className={`${
-          theme === "light"
-            ? "bg-white text-black dark:bg-gradient-to-r from-neutral-900 via-slate-900 to-neutral-900 dark:text-white"
-            : "bg-gradient-to-r from-neutral-900 via-slate-900 to-neutral-900 text-white dark:bg-white dark:text-black"
-        } duration-100`}
-      >
-        <Layout>
+    <>
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <div
+          className={`${
+            theme === "light"
+              ? "bg-white text-black dark:bg-gradient-to-r from-neutral-900 via-slate-900 to-neutral-900 dark:text-white"
+              : "bg-gradient-to-r from-neutral-900 via-slate-900 to-neutral-900 text-white dark:bg-white dark:text-black"
+          } duration-100`}
+        >
+          <NavBar theme={theme} setTheme={setTheme} loggedIn={loggedIn} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/exercise/:id" element={<ExerciseDetail />} />
@@ -51,13 +55,17 @@ function App() {
             <Route path="/exercise" element={<Exercise />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/contectus" element={<ContectUs />} />
-            <Route path="/login" element={<Login />} />
+            <Route
+              path="/login"
+              element={<Login setLoggedIn={handleLogin} />}
+            />
             <Route path="/registernow" element={<RegisterNow />} />
             <Route path="/trainersignup" element={<TrainerSignUp />} />
           </Routes>
-        </Layout>
-      </div>
-    </ThemeContext.Provider>
+          <Footer />
+        </div>
+      </ThemeContext.Provider>
+    </>
   );
 }
 
