@@ -2,20 +2,20 @@
 import { Link } from "react-router-dom";
 import { Link as Scroll } from "react-scroll";
 import logo from "../assets/images/Logo.png";
-import darkLogo from "../assets/images/logo.png";
+
 import { BiSun, BiMoon, BiLaptop } from "react-icons/bi";
 import { useEffect, useState } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const NavBar = ({ theme, setTheme, loggedIn }) => {
-  const isLoggedIn = loggedIn;
+const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
   const navigate = useNavigate();
-
+  const [open, setOpen] = useState(false);
   const handleLinkClick = () => {
     setOpen(false);
   };
+
   const handleLogout = async () => {
     try {
       // Make a request to logout endpoint
@@ -26,20 +26,83 @@ const NavBar = ({ theme, setTheme, loggedIn }) => {
 
       // Redirect to login page or any other desired page
       navigate("/login");
+      setLoggedIn(false); // Update the loggedIn state
     } catch (error) {
       console.error("Failed to logout", error);
       // Handle error if needed
     }
   };
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  const [open, setOpen] = useState(false);
+  // Conditionally render login/logout buttons
+  const renderAuthButtons = () => {
+    if (loggedIn) {
+      return (
+        <>
+          <motion.div
+            whileHover={{
+              scale: 1.2,
+              originX: 0,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: "300",
+            }}
+          >
+            <button
+              className="text-slate-800 dark:text-slate-300 py-4 px-2"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </motion.div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <motion.div
+            whileHover={{
+              scale: 1.2,
+              originX: 0,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: "300",
+            }}
+          >
+            <Link
+              to="/login"
+              className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
+              onClick={handleLinkClick}
+            >
+              Login
+            </Link>
+          </motion.div>
+          <span
+            className="h-6 w-px lg:bg-slate-800 lg:dark:bg-slate-300"
+            aria-hidden="true"
+          />
+          <motion.div
+            whileHover={{
+              scale: 1.2,
+              originX: 0,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: "300",
+            }}
+          >
+            <Link
+              to="/registernow"
+              className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
+            >
+              Register Now
+            </Link>
+          </motion.div>
+        </>
+      );
+    }
+  };
 
   const themeOptions = [
     { icon: BiSun, title: "light" },
@@ -49,10 +112,6 @@ const NavBar = ({ theme, setTheme, loggedIn }) => {
 
   const element = document.documentElement;
   const darkQuery = window.matchMedia("(prefers-color-scheme:dark)");
-
-  const [armLogo, setArmLogo] = useState(
-    localStorage.getItem("theme") === "dark" ? darkLogo : logo
-  );
 
   const onWhindowMatch = () => {
     if (
@@ -71,24 +130,16 @@ const NavBar = ({ theme, setTheme, loggedIn }) => {
       case "dark":
         element.classList.add("dark");
         localStorage.setItem("theme", "dark");
-        setArmLogo(darkLogo);
+
         break;
 
       case "light":
         element.classList.remove("dark");
-        setArmLogo(logo);
+
         localStorage.setItem("theme", "light");
         break;
 
       default:
-        setArmLogo("");
-
-        if (darkQuery.matches) {
-          setArmLogo(darkLogo);
-        } else {
-          setArmLogo(logo);
-        }
-
         localStorage.removeItem("theme");
         onWhindowMatch();
         break;
@@ -105,17 +156,10 @@ const NavBar = ({ theme, setTheme, loggedIn }) => {
         element.classList.remove("dark");
       }
     }
-
-    if (darkQuery.matches) {
-      setArmLogo(darkLogo);
-    } else {
-      setArmLogo(logo);
-    }
   });
   return (
     <nav className="sticky top-0 left-0 w-full z-40">
       <motion.div
-        style={{ scaleX }}
         className="
             fixed top-0 left-0 right-0 h-1 dark:bg-secondary bg-primary origin-left "
       ></motion.div>
@@ -166,31 +210,7 @@ const NavBar = ({ theme, setTheme, loggedIn }) => {
             Contacts
           </Link>
 
-          <div className="flex">
-            <Link
-              to="/login"
-              className="text-slate-800 dark:text-slate-300 py-4"
-              onClick={handleLinkClick}
-            >
-              Login
-            </Link>
-            <Link
-              to="/registernow"
-              className="text-slate-800 dark:text-slate-300 py-4 px-2"
-              onClick={handleLinkClick}
-            >
-              Register Now
-            </Link>
-          </div>
-          <div>
-            {" "}
-            <button
-              className="text-slate-800 dark:text-slate-300 py-4 px-2"
-              // onClick={handleLogout}
-            >
-              Logout
-            </button>
-          </div>
+          <div className="">{renderAuthButtons()}</div>
           <div className="flex py-4 gap-x-4">
             {themeOptions.map((opt) => (
               // eslint-disable-next-line react/jsx-key
@@ -240,14 +260,14 @@ const NavBar = ({ theme, setTheme, loggedIn }) => {
             className="w-12 h-12 mx-5 mb-2"
           >
             <Link to="/">
-              <img className="object-cover" src={armLogo} alt="" />
+              <img className="object-cover" src={logo} alt="" />
             </Link>
           </motion.div>
 
           <div
             className="hidden  lg:flex lg:flex-row gap-y-6 lg:gap-y-0 lg:flex-row lg:items-center
-           lg:pb-0 pb-12 lg:bg-violet-100 lg:dark:bg-transparent lg:w-auto lg:pl-0 pl-9 lg:gap-x-10
-            text-xl md:text-[22px] lg:opacity-100 opacity-0"
+lg:pb-0 pb-12 lg:bg-violet-100 lg:dark:bg-transparent lg:w-auto lg:pl-0 pl-9 lg:gap-x-10
+text-xl md:text-[22px] lg:opacity-100 opacity-0"
           >
             <motion.div
               whileHover={{
@@ -348,69 +368,49 @@ const NavBar = ({ theme, setTheme, loggedIn }) => {
         </div>
 
         <div className="hidden lg:flex lg:flex-2 lg:items-left lg:justify-end lg:space-x-6">
-          {isLoggedIn ? (
-            <>
-              <motion.div
-                whileHover={{
-                  scale: 1.2,
-                  originX: 0,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: "300",
-                }}
+          {renderAuthButtons()}
+
+          {/* <>
+            <motion.div
+              whileHover={{
+                scale: 1.2,
+                originX: 0,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: "300",
+              }}
+            >
+              <Link
+                to="/login"
+                className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
+                onClick={handleLinkClick}
               >
-                <button
-                  className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </motion.div>
-            </>
-          ) : (
-            <>
-              <motion.div
-                whileHover={{
-                  scale: 1.2,
-                  originX: 0,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: "300",
-                }}
+                Login
+              </Link>
+            </motion.div>
+            <span
+              className="h-6 w-px lg:bg-slate-800 lg:dark:bg-slate-300"
+              aria-hidden="true"
+            />
+            <motion.div
+              whileHover={{
+                scale: 1.2,
+                originX: 0,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: "300",
+              }}
+            >
+              <Link
+                to="/registernow"
+                className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
               >
-                <Link
-                  to="/login"
-                  className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
-                  onClick={handleLinkClick}
-                >
-                  Login
-                </Link>
-              </motion.div>
-              <span
-                className="h-6 w-px lg:bg-slate-800 lg:dark:bg-slate-300"
-                aria-hidden="true"
-              />
-              <motion.div
-                whileHover={{
-                  scale: 1.2,
-                  originX: 0,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: "300",
-                }}
-              >
-                <Link
-                  to="/registernow"
-                  className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
-                >
-                  Register Now
-                </Link>
-              </motion.div>
-            </>
-          )}
+                Register Now
+              </Link>
+            </motion.div>
+          </> */}
         </div>
 
         <div className="hidden lg:flex gap-x-4 bg-[#fae8ff] dark:bg-gray-300 rounded-md p-2 mr-5">

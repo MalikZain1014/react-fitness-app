@@ -24,8 +24,7 @@ function App() {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-  const [loggedIn, setLoggedIn] = useState(false);
-
+  const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem("token"));
   // Function to set logged in state
   const handleLogin = () => {
     setLoggedIn(true);
@@ -47,7 +46,12 @@ function App() {
               : "bg-gradient-to-r from-neutral-900 via-slate-900 to-neutral-900 text-white dark:bg-white dark:text-black"
           } duration-100`}
         >
-          <NavBar theme={theme} setTheme={setTheme} loggedIn={loggedIn} />
+          <NavBar
+            theme={theme}
+            setTheme={setTheme}
+            loggedIn={loggedIn}
+            setLoggedIn={setLoggedIn}
+          />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/exercise/:id" element={<ExerciseDetail />} />

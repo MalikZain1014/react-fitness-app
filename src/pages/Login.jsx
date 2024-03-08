@@ -13,11 +13,9 @@ const Login = ({ setLoggedIn }) => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleRememberMeChange = () => {
     setRememberMe(!rememberMe);
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -25,7 +23,6 @@ const Login = ({ setLoggedIn }) => {
         "http://localhost:5500/login",
         formData
       );
-
       if (
         response.data &&
         response.data.user &&
@@ -33,18 +30,8 @@ const Login = ({ setLoggedIn }) => {
         response.data.authorization.token
       ) {
         localStorage.setItem("token", response.data.authorization.token);
-
         setLoggedIn(true);
-
-        if (rememberMe) {
-          localStorage.setItem("email", formData.email);
-          localStorage.setItem("password", formData.password);
-        } else {
-          localStorage.removeItem("email");
-          localStorage.removeItem("password");
-        }
-
-        navigate("/"); // Redirect to the home page
+        navigate("/");
       } else {
         setError("Invalid response format. Please try again later.");
       }
@@ -56,7 +43,6 @@ const Login = ({ setLoggedIn }) => {
       );
     }
   };
-
   return (
     <div className="bg-transparent flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
