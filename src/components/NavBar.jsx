@@ -185,10 +185,10 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
             Exercises
           </Link>
           <Link
-            to="/exercise"
+            to="/calculator"
             className="text-slate-800 dark:text-slate-300 py-4"
           >
-            Demo
+            Calculator
           </Link>
           {/* ... (other links with onClick handlers) */}
           <Scroll
@@ -203,11 +203,11 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
             Reasons
           </Scroll>
           <Link
-            to="/contectus"
+            to="/aboutus"
             className="text-slate-800 dark:text-slate-300 py-4"
             onClick={handleLinkClick}
           >
-            Contacts
+            About Us
           </Link>
 
           <div className="">{renderAuthButtons()}</div>
@@ -257,7 +257,7 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
               type: "spring",
               stiffness: "300",
             }}
-            className="w-12 h-12 mx-5 mb-2"
+            className="w-10 h-10 mx-5 mb-2"
           >
             <Link to="/">
               <img className="object-cover" src={logo} alt="" />
@@ -282,7 +282,7 @@ text-xl md:text-[22px] lg:opacity-100 opacity-0"
               <Link
                 onClick={() => setOpen(false)}
                 to="/"
-                className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-b-4 border-primary"
+                className="text-slate-800 lg:dark:text-slate-300 cursor-pointer"
               >
                 Home
               </Link>
@@ -317,10 +317,10 @@ text-xl md:text-[22px] lg:opacity-100 opacity-0"
               }}
             >
               <Link
-                to="/exercise"
+                to="/calculator"
                 className="text-slate-800 cursor-pointer lg:dark:text-slate-300"
               >
-                Demo
+                Calculator
               </Link>
             </motion.div>
 
@@ -358,10 +358,10 @@ text-xl md:text-[22px] lg:opacity-100 opacity-0"
               }}
             >
               <Link
-                to="/contectus"
+                to="/aboutus"
                 className="text-slate-800 cursor-pointer lg:dark:text-slate-300"
               >
-                Contacts
+                About Us
               </Link>
             </motion.div>
           </div>

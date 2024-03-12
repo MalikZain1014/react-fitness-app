@@ -4,7 +4,7 @@ const ContectUs = () => {
   return (
     <div
       id="contact-us"
-      className="flex items-center p-5 justify-center gap-y-4 flex-col mt-20"
+      className="flex items-center p-5 justify-center gap-y-4 flex-col my-8"
     >
       <AnimationOnScroll initiallyVisible={true} animateIn="animate__wobble">
         <h1 className="capitalize mb-6 text-2xl sm:text-3xl font-black text-slate-800 dark:text-slate-300">
@@ -12,9 +12,9 @@ const ContectUs = () => {
         </h1>
       </AnimationOnScroll>
       <p className="text-justify md:w-2/3 xl:w-1/2 text-slate-800 dark:text-slate-300">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro voluptas
-        natus a corrupti asperiores doloremque quibusdam voluptates vero,
-        dolorum est.
+        Transform your body and mind with our expert guidance and
+        state-of-the-art facilities. Take the first step towards a healthier,
+        happier you today
       </p>
       <form
         action="#"

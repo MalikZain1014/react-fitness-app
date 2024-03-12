@@ -8,7 +8,7 @@ import Register from "../assets/images/Register.png";
 // Define HeroBanner component
 function HeroBanner() {
   return (
-    <section className="grid grid-cols-4 w-full justify-between lg:pb-5 pt-5 lg:pt-0 pb-14">
+    <section className="grid grid-cols-4 w-full justify-between lg:pb-5 lg:mb-16 pt-5 lg:pt-0 pb-14">
       <motion.div
         initial={{ y: "300px" }}
         animate={{ y: "0" }}
