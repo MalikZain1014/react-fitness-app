@@ -42,7 +42,7 @@ const Class = () => {
               grabCursor={true}
               modules={[EffectCards]}
               className="mySwiper w-[190px] h-[190px] -sm:w-[250px] -sm:h-[300px] sm:w-[300px] sm:h-[340px]"
-              lazy={true} // Lazy load images
+              // lazy={true} // Lazy load images
             >
               {images.map((img, index) => (
                 <SwiperSlide key={index} className="relative">

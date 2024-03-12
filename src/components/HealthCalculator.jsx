@@ -1,5 +1,4 @@
 import { useState } from "react";
-import HealthCards from "./HealthCards";
 
 function HealthCalculator() {
   const [heightFeet, setHeightFeet] = useState("");

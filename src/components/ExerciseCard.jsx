@@ -19,10 +19,7 @@ const ExerciseCard = ({ exercise }) => {
   }, [isInView]);
 
   return (
-    <section
-      ref={ref}
-      className="bg-transparent shadow-md shadow-[#f5d0fe] p-5 rounded-md my-3"
-    >
+    <section ref={ref} className="bg-transparent  p-5 rounded-md my-3">
       <Link to={`/exercise/${exercise._id}`}>
         <motion.div
           variants={{

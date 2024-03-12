@@ -1,4 +1,3 @@
-import React from "react";
 import HealthCalculator from "../components/HealthCalculator";
 import HealthCards from "../components/HealthCards";
 
