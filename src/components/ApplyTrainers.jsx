@@ -32,7 +32,7 @@ export default function ApplyTrainers() {
             </blockquote>
 
             <button
-              onClick={() => navigate("/supplierForm")}
+              onClick={() => navigate("/trainersignup")}
               className="border-2 my-2 mx-10 border-orange-400 p-2 rounded text-xl font-semibold bg-orange-600  text-zinc-200  transition-all duration-300 hover:bg-orange-800 hover:text-white"
             >
               APPLY NOW
