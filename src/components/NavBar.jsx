@@ -257,7 +257,7 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
               type: "spring",
               stiffness: "300",
             }}
-            className="w-10 h-10 mx-5 mb-2"
+            className="w-10 h-10 mt-3 mx-4"
           >
             <Link to="/">
               <img className="object-cover" src={logo} alt="" />

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "../assets/images/logo.svg";
+import Logo from "../assets/images/logo.png";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 export default function TrainerSignUp() {
   return (
