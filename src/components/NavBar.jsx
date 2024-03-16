@@ -15,7 +15,7 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
   const handleLinkClick = () => {
     setOpen(false);
   };
-
+  const [isOpen, setIsOpen] = useState(false);
   const handleLogout = async () => {
     try {
       // Make a request to logout endpoint
@@ -38,23 +38,62 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
     if (loggedIn) {
       return (
         <>
-          <motion.div
-            whileHover={{
-              scale: 1.2,
-              originX: 0,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: "300",
-            }}
-          >
+          <div className=" lg:relative  ">
             <button
-              className="text-slate-800 dark:text-slate-300 py-4 px-2"
-              onClick={handleLogout}
+              className="text-slate-800 dark:text-slate-300 mt-2 focus:outline-none"
+              onClick={() => setIsOpen(!isOpen)}
             >
-              Logout
+              {/* <img
+                src={logo} // Replace with actual path to profile logo
+                alt="Profile"
+                className="w-8 h-8 rounded-full"
+              /> */}
+              <img
+                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg"
+                className="rounded-full shadow-lg w-10 h-10"
+              />
             </button>
-          </motion.div>
+            {isOpen && (
+              <div className="lg:absolute right-0 mt-2 w-auto bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700  divide-gray-100 dark:divide-gray-700 rounded-lg shadow-lg">
+                <div className="p-4">
+                  <div className=" ">
+                    <img
+                      // src={user.profileLogo}
+                      src={logo} // Replace with actual path to profile logo
+                      alt="Profile"
+                      className="w-12 h-12 rounded-full"
+                    />
+                    <div className="ml-">
+                      <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                        {/* {user.name} */}
+                        Malik
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {/* {user.email} */}
+                        malikzain@gmail.com
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className=" ">
+                  <Link
+                    to="/profile"
+                    className="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    More Details
+                  </Link>
+                </div>
+                <div className="py-1">
+                  <button
+                    className="block w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-700"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </>
       );
     } else {
@@ -72,7 +111,7 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
           >
             <Link
               to="/login"
-              className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
+              className="text-slate-800 dark:text-slate-300 cursor-pointer border-primary"
               onClick={handleLinkClick}
             >
               Login
@@ -94,7 +133,7 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
           >
             <Link
               to="/registernow"
-              className="text-slate-800 lg:dark:text-slate-300 cursor-pointer border-primary"
+              className="text-slate-800 dark:text-slate-300 cursor-pointer border-primary"
             >
               Register Now
             </Link>
@@ -164,7 +203,7 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
             fixed top-0 left-0 right-0 h-1 dark:bg-secondary bg-primary origin-left "
       ></motion.div>
       <div
-        className={`lg:hidden fixed top-0 right-0 w-half h-full bg-white dark:bg-gradient-to-r from-neutral-800 via-slate-800 to-neutral-800 z-50 transition-transform ease-in-out duration-300 transform ${
+        className={`lg:hidden fixed top-0 right-0 pr-3 w-3/6 h-full bg-white dark:bg-gradient-to-r from-neutral-800 via-slate-800 to-neutral-800 z-50 transition-transform ease-in-out duration-300 transform ${
           open ? "-translate-x-0" : "translate-x-full"
         }`}
       >
@@ -172,46 +211,43 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
         <div className="flex ml-3 flex-col h-full justify-left items-left">
           <Link
             to="/"
-            className="text-slate-800 dark:text-slate-300 py-4"
+            className="text-slate-800 dark:text-slate-300 my-4"
             onClick={handleLinkClick}
           >
             Home
           </Link>
           <Link
             to="/exercises"
-            className="text-slate-800 dark:text-slate-300 py-4"
+            className="text-slate-800 dark:text-slate-300 my-4"
             onClick={handleLinkClick}
           >
             Exercises
           </Link>
           <Link
             to="/calculator"
-            className="text-slate-800 dark:text-slate-300 py-4"
+            className="text-slate-800 dark:text-slate-300 my-4"
+            onClick={handleLinkClick}
           >
             Calculator
           </Link>
           {/* ... (other links with onClick handlers) */}
-          <Scroll
+          <Link
             to="reasons"
-            spy={true}
-            smooth={true}
-            offset={-100}
-            duration={500}
-            className="text-slate-800 dark:text-slate-300 py-4"
+            className="text-slate-800 dark:text-slate-300 my-4"
             onClick={handleLinkClick}
           >
             Reasons
-          </Scroll>
+          </Link>
           <Link
             to="/aboutus"
-            className="text-slate-800 dark:text-slate-300 py-4"
+            className="text-slate-800 dark:text-slate-300 my-4"
             onClick={handleLinkClick}
           >
             About Us
           </Link>
 
-          <div className="">{renderAuthButtons()}</div>
-          <div className="flex py-4 gap-x-4">
+          <div className=" my-4 gap-x-4">{renderAuthButtons()}</div>
+          <div className="flex my-4 gap-x-4">
             {themeOptions.map((opt) => (
               // eslint-disable-next-line react/jsx-key
               <motion.div
@@ -239,10 +275,10 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
         </div>
       </div>
 
-      <div className="md:flex py-3 items-center justify-between bg-violet-100 dark:bg-gradient-to-r from-neutral-800 via-slate-800 to-neutral-800">
+      <div className="md:flex py-2 items-center justify-between bg-violet-100 dark:bg-gradient-to-r from-neutral-800 via-slate-800 to-neutral-800">
         <div
           onClick={() => setOpen(!open)}
-          className="text-slate-800 dark:text-slate-300 text-4xl absolute top-5 right-5 cursor-pointer z-50 lg:hidden"
+          className="text-slate-800 dark:text-slate-300 text-4xl absolute top-5 right-6 cursor-pointer z-50 lg:hidden"
         >
           <ion-icon name={open ? "close" : "menu"}></ion-icon>
         </div>
@@ -366,8 +402,32 @@ text-xl md:text-[22px] lg:opacity-100 opacity-0"
             </motion.div>
           </div>
         </div>
-
-        <div className="hidden lg:flex lg:flex-2 lg:items-left lg:justify-end lg:space-x-6">
+        <div className="hidden lg:flex gap-x-4 bg-[#fae8ff] dark:bg-gray-300 rounded-md  p-2">
+          {themeOptions.map((opt) => (
+            // eslint-disable-next-line react/jsx-key
+            <motion.div
+              key={opt.title}
+              whileHover={{
+                scale: 1.3,
+                originX: 0,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: "300",
+              }}
+            >
+              <opt.icon
+                key={opt.title}
+                onClick={() => setTheme(opt.title)}
+                className={`text-2xl cursor-pointer ${
+                  theme === opt.title ? "text-primary" : "text-slate-600 "
+                }`}
+                title={opt.title}
+              />
+            </motion.div>
+          ))}
+        </div>
+        <div className="hidden lg:flex lg:flex-2 lg:items-left lg:justify-end lg:space-x-6 mr-5">
           {renderAuthButtons()}
 
           {/* <>
@@ -411,32 +471,6 @@ text-xl md:text-[22px] lg:opacity-100 opacity-0"
               </Link>
             </motion.div>
           </> */}
-        </div>
-
-        <div className="hidden lg:flex gap-x-4 bg-[#fae8ff] dark:bg-gray-300 rounded-md p-2 mr-5">
-          {themeOptions.map((opt) => (
-            // eslint-disable-next-line react/jsx-key
-            <motion.div
-              key={opt.title}
-              whileHover={{
-                scale: 1.3,
-                originX: 0,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: "300",
-              }}
-            >
-              <opt.icon
-                key={opt.title}
-                onClick={() => setTheme(opt.title)}
-                className={`text-2xl cursor-pointer ${
-                  theme === opt.title ? "text-primary" : "text-slate-600 "
-                }`}
-                title={opt.title}
-              />
-            </motion.div>
-          ))}
         </div>
       </div>
     </nav>

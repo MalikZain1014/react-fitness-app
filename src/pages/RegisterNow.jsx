@@ -27,8 +27,10 @@ export default function RegisterNow() {
     try {
       const url = "http://localhost:5500/register";
       const { data: res } = await axios.post(url, data);
-      navigate("/login");
+      console.log("🚀 ~ handleSubmit ~ data:", data);
       console.log(res.message);
+
+      navigate("/login");
     } catch (error) {
       if (
         error.response &&
