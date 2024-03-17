@@ -16,6 +16,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import About from "./pages/About";
 import Calculator from "./pages/Calculator";
+import ForDiabetes from "./pages/ForDiabetes";
 
 // Step 1: Create Context for Theme
 const ThemeContext = React.createContext();
@@ -58,7 +59,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/exercise/:id" element={<ExerciseDetail />} />
             <Route path="/exercises" element={<ExerciseLayout />} />
-            {/* <Route path="/exercise" element={<Exercise />} /> */}
+            <Route path="/fordiabbetes" element={<ForDiabetes />} />
             <Route path="/calculator" element={<Calculator />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/contectu" element={<ContectUs />} />

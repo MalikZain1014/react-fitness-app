@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import { Link as Scroll } from "react-scroll";
+
 import logo from "../assets/images/Logo.png";
 
 import { BiSun, BiMoon, BiLaptop } from "react-icons/bi";
@@ -232,11 +232,11 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
           </Link>
           {/* ... (other links with onClick handlers) */}
           <Link
-            to="reasons"
+            to="fordiabbetes"
             className="text-slate-800 dark:text-slate-300 my-4"
             onClick={handleLinkClick}
           >
-            Reasons
+            ForDiabbetes
           </Link>
           <Link
             to="/aboutus"
@@ -370,17 +370,13 @@ text-xl md:text-[22px] lg:opacity-100 opacity-0"
                 stiffness: "300",
               }}
             >
-              <Scroll
+              <Link
                 onClick={() => setOpen(false)}
-                to="reasons"
-                spy={true}
-                smooth={true}
-                offset={-100}
-                duration={500}
+                to="fordiabbetes"
                 className="text-slate-800 cursor-pointer lg:dark:text-slate-300"
               >
-                Reasons
-              </Scroll>
+                ForDiabbetes
+              </Link>
             </motion.div>
 
             <motion.div
