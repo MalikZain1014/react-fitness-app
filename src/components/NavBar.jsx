@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 
 import logo from "../assets/images/Logo.png";
+import userlogo from "../assets/images/logoWhite.png";
 
 import { BiSun, BiMoon, BiLaptop } from "react-icons/bi";
 import { useEffect, useState } from "react";
@@ -23,6 +24,7 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
 
       // Clear any local storage or session data if needed
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
 
       // Redirect to login page or any other desired page
       navigate("/login");
@@ -36,6 +38,7 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
   // Conditionally render login/logout buttons
   const renderAuthButtons = () => {
     if (loggedIn) {
+      const user = JSON.parse(localStorage.getItem("user"));
       return (
         <>
           <div className=" lg:relative  ">
@@ -43,13 +46,8 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
               className="text-slate-800 dark:text-slate-300 mt-2 focus:outline-none"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {/* <img
-                src={logo} // Replace with actual path to profile logo
-                alt="Profile"
-                className="w-8 h-8 rounded-full"
-              /> */}
               <img
-                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg"
+                src={userlogo}
                 className="rounded-full shadow-lg w-10 h-10"
               />
             </button>
@@ -58,19 +56,16 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
                 <div className="p-4">
                   <div className=" ">
                     <img
-                      // src={user.profileLogo}
                       src={logo} // Replace with actual path to profile logo
                       alt="Profile"
-                      className="w-12 h-12 rounded-full"
+                      className="w-8 h-8 rounded-full"
                     />
                     <div className="ml-">
                       <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-                        {/* {user.name} */}
-                        Malik
+                        {user.firstname + " " + user.lastname}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {/* {user.email} */}
-                        malikzain@gmail.com
+                        {user.email}
                       </p>
                     </div>
                   </div>

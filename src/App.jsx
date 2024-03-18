@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import About from "./pages/About";
 import Calculator from "./pages/Calculator";
 import ForDiabetes from "./pages/ForDiabetes";
+import MoreDetail from "./components/MoreDetail";
 
 // Step 1: Create Context for Theme
 const ThemeContext = React.createContext();
@@ -56,7 +57,10 @@ function App() {
             setLoggedIn={setLoggedIn}
           />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={<Home loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+            />
             <Route path="/exercise/:id" element={<ExerciseDetail />} />
             <Route path="/exercises" element={<ExerciseLayout />} />
             <Route path="/fordiabbetes" element={<ForDiabetes />} />
@@ -68,6 +72,7 @@ function App() {
               path="/login"
               element={<Login setLoggedIn={handleLogin} />}
             />
+            <Route path="/profile" element={<MoreDetail />} />
             <Route path="/registernow" element={<RegisterNow />} />
             <Route path="/trainersignup" element={<TrainerSignUp />} />
           </Routes>

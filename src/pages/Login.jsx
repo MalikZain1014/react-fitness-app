@@ -29,8 +29,36 @@ const Login = ({ setLoggedIn }) => {
         response.data.authorization &&
         response.data.authorization.token
       ) {
+        // Extract user data
+        const {
+          _id,
+          email,
+          firstname,
+          lastname,
+          age,
+          height,
+          weight,
+          targetweight,
+          dateJoined,
+        } = response.data.user;
+
+        // Store user data and token in localStorage
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            _id,
+            email,
+            firstname,
+            lastname,
+            age,
+            height,
+            weight,
+            targetweight,
+            dateJoined,
+          })
+        );
         localStorage.setItem("token", response.data.authorization.token);
-        localStorage.setItem("token", response.data.user);
+
         setLoggedIn(true);
         navigate("/");
       } else {
@@ -44,6 +72,7 @@ const Login = ({ setLoggedIn }) => {
       );
     }
   };
+
   return (
     <div className="bg-transparent flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">

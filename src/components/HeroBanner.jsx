@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 import React from "react";
 import { Link } from "react-router-dom";
@@ -6,7 +7,37 @@ import { motion } from "framer-motion";
 import Register from "../assets/images/Register.png";
 
 // Define HeroBanner component
-function HeroBanner() {
+function HeroBanner({ loggedIn, setLoggedIn }) {
+  const renderAuthButtons = () => {
+    if (loggedIn) {
+      // If user is logged in, display welcome message
+      const user = JSON.parse(localStorage.getItem("user"));
+      return (
+        <div className="text-3xl sm:text-4xl font-black text-secondary">
+          Welcome, {user.firstname + " " + user.lastname}!
+        </div>
+      );
+    } else {
+      // If user is logged out, display registration options
+      return (
+        <div className="flex gap-4 mt-4">
+          <Link
+            to="/signup"
+            className="bg-secondary ring-offset-[#fdf4ff] dark:ring-offset-slate-800 duration-500 text-white mt-3 py-2 px-4 rounded-md ring-2 ring-offset-2 ring-secondary cursor-pointer hover:bg-primary hover:ring-primary z-10"
+          >
+            Register as User
+          </Link>
+          <Link
+            to="/trainersignup"
+            className="bg-secondary ring-offset-[#fdf4ff] dark:ring-offset-slate-800 duration-500 text-white mt-3 py-2 px-4 rounded-md ring-2 ring-offset-2 ring-secondary cursor-pointer hover:bg-primary hover:ring-primary z-10"
+          >
+            Register as Trainer
+          </Link>
+        </div>
+      );
+    }
+  };
+
   return (
     <section className="grid grid-cols-4 w-full justify-between lg:pb-5 lg:mb-16 pt-5 lg:pt-0 pb-14">
       <motion.div
@@ -47,7 +78,7 @@ function HeroBanner() {
 
                 {/* Add buttons to switch between user and trainer registration modes */}
                 <div className="flex gap-4 mt-4">
-                  <Link
+                  {/* <Link
                     to="/signup"
                     className="bg-secondary ring-offset-[#fdf4ff] dark:ring-offset-slate-800 duration-500 text-white mt-3 py-2 px-4 rounded-md ring-2 ring-offset-2 ring-secondary cursor-pointer hover:bg-primary hover:ring-primary z-10"
                   >
@@ -58,7 +89,8 @@ function HeroBanner() {
                     className="bg-secondary ring-offset-[#fdf4ff] dark:ring-offset-slate-800 duration-500 text-white mt-3 py-2 px-4 rounded-md ring-2 ring-offset-2 ring-secondary cursor-pointer hover:bg-primary hover:ring-primary z-10"
                   >
                     Register as Trainer
-                  </Link>
+                  </Link> */}
+                  {renderAuthButtons()}
                 </div>
               </div>
             </motion.div>
