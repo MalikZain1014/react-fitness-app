@@ -15,7 +15,7 @@ const Footer = () => {
             </span>
           </Link>
           <p className="text-sm text-gray-800 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4 dark:text-white">
-            © 2022 FitTreck —
+            © 2024 FitTreck —
             {/* <span className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4 dark:text-gray-100"> */}
             <Link to="/registernow">
               <button

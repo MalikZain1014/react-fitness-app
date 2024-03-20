@@ -12,26 +12,30 @@ function HeroBanner({ loggedIn, setLoggedIn }) {
     if (loggedIn) {
       // If user is logged in, display welcome message
       const user = JSON.parse(localStorage.getItem("user"));
-      return (
-        <div className="text-3xl sm:text-4xl font-black text-secondary">
-          Welcome, {user.firstname + " " + user.lastname}!
-        </div>
-      );
+      if (user) {
+        return (
+          <div className="text-3xl sm:text-4xl font-black text-secondary">
+            Welcome, {user.firstname + " " + user.lastname}!
+          </div>
+        );
+      } else if (setLoggedIn) {
+        return null; // User object does not exist
+      }
     } else {
       // If user is logged out, display registration options
       return (
         <div className="flex gap-4 mt-4">
           <Link
-            to="/signup"
+            to="/login"
             className="bg-secondary ring-offset-[#fdf4ff] dark:ring-offset-slate-800 duration-500 text-white mt-3 py-2 px-4 rounded-md ring-2 ring-offset-2 ring-secondary cursor-pointer hover:bg-primary hover:ring-primary z-10"
           >
-            Register as User
+            User Login
           </Link>
           <Link
             to="/trainersignup"
             className="bg-secondary ring-offset-[#fdf4ff] dark:ring-offset-slate-800 duration-500 text-white mt-3 py-2 px-4 rounded-md ring-2 ring-offset-2 ring-secondary cursor-pointer hover:bg-primary hover:ring-primary z-10"
           >
-            Register as Trainer
+            Trainer Register
           </Link>
         </div>
       );
@@ -58,7 +62,7 @@ function HeroBanner({ loggedIn, setLoggedIn }) {
           </p>
           <div className="relative w-full flex items-center justify-center text-center">
             <span className="hidden xl:block absolute mb-9 opacity-10 dark:opacity-20 text-7xl w-full text-secondary font-semibold">
-              FitTreck App
+              FitTreck Site
             </span>
             <motion.div
               initial={{ y: "300px" }}

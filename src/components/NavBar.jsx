@@ -37,8 +37,8 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
 
   // Conditionally render login/logout buttons
   const renderAuthButtons = () => {
-    if (loggedIn) {
-      const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (loggedIn && user) {
       return (
         <>
           <div className=" lg:relative  ">
@@ -296,7 +296,7 @@ const NavBar = ({ theme, setTheme, loggedIn, setLoggedIn }) => {
           </motion.div>
 
           <div
-            className="hidden  lg:flex lg:flex-row gap-y-6 lg:gap-y-0 lg:flex-row lg:items-center
+            className="hidden  lg:flex  gap-y-6 lg:gap-y-0 lg:flex-row lg:items-center
 lg:pb-0 pb-12 lg:bg-violet-100 lg:dark:bg-transparent lg:w-auto lg:pl-0 pl-9 lg:gap-x-10
 text-xl md:text-[22px] lg:opacity-100 opacity-0"
           >

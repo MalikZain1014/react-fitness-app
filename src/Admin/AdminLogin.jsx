@@ -1,22 +1,24 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 import logo from "../assets/images/logo.png";
 
-const Login = ({ setLoggedIn }) => {
+const AdminLogin = ({ setLogIn }) => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleRememberMeChange = () => {
-    setRememberMe(!rememberMe);
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const togglePasswordVisibility = () => {
@@ -25,58 +27,18 @@ const Login = ({ setLoggedIn }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.post(
-        "http://localhost:5500/login",
-        formData
-      );
-      if (
-        response.data &&
-        response.data.user &&
-        response.data.authorization &&
-        response.data.authorization.token
-      ) {
-        // Extract user data
-        const {
-          _id,
-          email,
-          firstname,
-          lastname,
-          age,
-          height,
-          weight,
-          targetweight,
-          dateJoined,
-        } = response.data.user;
-
-        // Store user data and token in localStorage
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            _id,
-            email,
-            firstname,
-            lastname,
-            age,
-            height,
-            weight,
-            targetweight,
-            dateJoined,
-          })
-        );
-        localStorage.setItem("token", response.data.authorization.token);
-
-        setLoggedIn(true);
-        navigate("/");
-      } else {
-        setError("Invalid response format. Please try again later.");
-      }
+      await axios.post("http://localhost:5500/loginadmin", formData);
+      // Assuming the API returns a token upon successful login
+      const Admintoken =
+        "hebkwebckweufiqgfbb34648274hdu3qriqwgvsuq09347y9rtg4uifbr";
+      localStorage.setItem("Admintoken", Admintoken); // Store token in local storage
+      setLogIn(true); // Set logged in state
+      navigate("/dashboard"); // Redirect to the dashboard or any other route
     } catch (error) {
-      setError(
-        error.response
-          ? error.response.data.message
-          : "Something went wrong. Please try again later."
-      );
+      setError("Invalid email or password. Please try again.");
+      console.error("Login error:", error);
     }
   };
 
@@ -148,22 +110,6 @@ const Login = ({ setLoggedIn }) => {
                 {error && <div className="text-red-500">{error}</div>}
               </div>
 
-              <div className="flex items-center mt-2">
-                <input
-                  type="checkbox"
-                  id="rememberMe"
-                  checked={rememberMe}
-                  onChange={handleRememberMeChange}
-                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                />
-                <label
-                  htmlFor="rememberMe"
-                  className="ml-2 block text-sm text-gray-900 dark:text-slate-300"
-                >
-                  Remember me
-                </label>
-              </div>
-
               <div className="mt-4">
                 <button
                   type="submit"
@@ -173,15 +119,6 @@ const Login = ({ setLoggedIn }) => {
                 </button>
               </div>
             </form>
-            <p className="mt-10 text-center text-slate-800 dark:text-slate-300">
-              If you are not registered yet,{" "}
-              <Link
-                to="/registernow"
-                className="font-semibold leading-6 text-indigo-800 dark:text-indigo-400"
-              >
-                Register Now
-              </Link>
-            </p>
           </div>
         </div>
       </div>
@@ -189,8 +126,8 @@ const Login = ({ setLoggedIn }) => {
   );
 };
 
-Login.propTypes = {
-  setLoggedIn: PropTypes.func.isRequired,
+AdminLogin.propTypes = {
+  setLogIn: PropTypes.func.isRequired,
 };
 
-export default Login;
+export default AdminLogin;

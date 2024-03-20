@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import gymImage from "../assets/images/about4.png";
 import yogaImage from "../assets/images/about5.png";
 import cardioImage from "../assets/images/about3.jpg";
@@ -52,15 +53,17 @@ const About = () => {
                     Our Experience
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Integer nec odio. Praesent libero.
+                    At FitTreck, we curate an immersive fitness experience that
+                    transcends the ordinary. With expert guidance and innovative
+                    programs, we empower you to conquer your fitness journey
+                    with confidence.
                   </p>
                   <h3 className="text-lg font-semibold text-secondary mb-2">
                     Approved By
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Integer nec odio. Praesent libero.
+                    FitTreck: Approved By Fitness Enthusiasts Around the Globe,
+                    Setting the Standard in Wellness Excellence.
                   </p>
                 </div>
               </div>
