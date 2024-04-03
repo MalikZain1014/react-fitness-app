@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/Logo.png";
 
 const Login = ({ setLoggedIn }) => {
   const navigate = useNavigate();
