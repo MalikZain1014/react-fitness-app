@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import React from "react"; // Import React
-import BodyPart from "./BodyPart"; // Import BodyPart with correct casing
+import BodyPart from "./bodyPart"; // Import BodyPart with correct casing
 import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import { useContext } from "react";
 import "react-horizontal-scrolling-menu/dist/styles.css";
